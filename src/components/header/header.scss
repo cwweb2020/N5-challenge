@@ -1,0 +1,15 @@
+.header {
+  background: #000000d6;
+  color: white;
+
+  .header__wrapper {
+    height: 9vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    .header__cart {
+      font-size: 20px;
+    }
+  }
+}

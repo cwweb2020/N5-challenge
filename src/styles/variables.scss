@@ -1,0 +1,70 @@
+// $shadow-buttons: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+//
+
+// mixins
+
+// mixin para fuentes de titulos
+// se importa con @include
+@mixin mainTitle($size: 1.875em, $weight: 400) {
+  font-size: $size;
+  font-weight: $weight;
+  font-style: normal;
+  //   @media (max-width: 900px) {
+  //     text-align: center;
+  //     font-size: 20px;
+  //   }
+}
+// mixin para subtitulos
+@mixin subTitle($color: black, $fs: 18px) {
+  // font-family: "Lexend Deca", sans-serif;
+  font-size: $fs;
+  font-weight: 400;
+  font-style: normal;
+  color: $color;
+  //   @media (max-width: 900px) {
+  //     font-size: 18px;
+  //   }
+}
+
+// mixin para texto normal
+@mixin normalText($color: black, $size: 16px) {
+  // font-family: "Lexend Deca", sans-serif;
+  font-size: $size;
+  font-weight: 300;
+  font-style: normal;
+  color: $color;
+  //   @media (max-width: 900px) {
+  //     font-size: 15px;
+  //   }
+}
+
+@mixin container($padd: 0 15px) {
+  padding: $padd;
+}
+
+@mixin button($font: 18px, $pad: 8px 18px) {
+  padding: $pad;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 152, 0, 1) 0%,
+    rgba(224, 227, 100, 1) 44%
+  );
+  font-weight: 700;
+  font-size: $font;
+  letter-spacing: 0.5px;
+  box-shadow: rgba(255, 255, 255, 0.15) 1.95px 1.95px 2.6px;
+  cursor: pointer;
+}
+
+@mixin flex($jc: null, $dir: row, $align: center) {
+  display: flex;
+  @if $jc != null {
+    justify-content: $jc;
+  }
+  align-items: $align;
+  flex-direction: $dir;
+  gap: 15px;
+}
