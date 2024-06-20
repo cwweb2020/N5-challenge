@@ -1,7 +1,26 @@
+.product__title {
+  font-size: 2em;
+  margin-bottom: 2.37em;
+  text-align: center;
+}
+
 .product__container {
   width: 80%;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+  .product__title {
+    font-size: 1.3em;
+    margin-bottom: 1.37em;
+  }
+
+  .product__container {
+    grid-template-columns: 1fr 1fr;
+    width: 95%;
+    font-size: 11px;
+  }
 }

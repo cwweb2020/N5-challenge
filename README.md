@@ -54,6 +54,10 @@ yarn start
 
 4. Abrir http://localhost:3000 en el navegador para ver la aplicación.
 
+### alojado en firebase :
+
+https://n5challenge.web.app/
+
 ## Características
 
 Mostrar productos desde un archivo JSON.
