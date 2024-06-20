@@ -1,14 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./single-product.scss";
 import { DataContext } from "../../context";
 
 const SingleProduct = ({ product }) => {
   const { addToCart } = useContext(DataContext);
   const { name, amount, price, img, id } = product;
+  const [quantity, setQuantity] = useState(1); // Estado para almacenar la cantidad
 
   const handleAddToCart = (id) => {
-    addToCart(id);
+    addToCart(id, quantity);
     alert("Producto agregado al carrito");
+    setQuantity(1);
+  };
+
+  const handleQuantityChange = (e) => {
+    const newQuantity = parseInt(e.target.value, 10);
+    setQuantity(newQuantity);
   };
 
   return (
@@ -26,6 +33,13 @@ const SingleProduct = ({ product }) => {
           <button onClick={() => handleAddToCart(id)} disabled={amount === 0}>
             Agregar al carrito
           </button>
+          <input
+            type="number"
+            min="1"
+            max={amount}
+            value={quantity}
+            onChange={handleQuantityChange}
+          />
         </div>
       </section>
     </>

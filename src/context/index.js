@@ -21,17 +21,20 @@ const DataProvider = ({ children }) => {
     localStorage.setItem("products", JSON.stringify(productsList));
   }, [productsList]);
 
-  //  add to cart
-  const addToCart = (id) => {
+  // add to cart
+  const addToCart = (id, quantity) => {
     setCart((prevCart) => {
-      const productInCart = prevCart.find((item) => item.id === id);
-      if (productInCart) {
-        return prevCart.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        );
+      const productInCartIndex = prevCart.findIndex((item) => item.id === id);
+
+      if (productInCartIndex !== -1) {
+        // update quantity
+        const updatedCart = [...prevCart];
+        updatedCart[productInCartIndex].quantity += quantity;
+        return updatedCart;
       } else {
-        const product = productsList.find((product) => product.id === id);
-        return [...prevCart, { ...product, quantity: 1 }];
+        // add new product
+        const productToAdd = productsList.find((product) => product.id === id);
+        return [...prevCart, { ...productToAdd, quantity }];
       }
     });
   };

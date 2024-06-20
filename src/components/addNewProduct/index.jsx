@@ -32,7 +32,7 @@ const AddProduct = () => {
     setNewProduct({ name: "", price: "", amount: "", img: "" });
     setTimeout(() => {
       alert("Producto agregado correctamente");
-    }, 1000);
+    }, 900);
   };
 
   return (

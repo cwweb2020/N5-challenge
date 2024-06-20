@@ -66,6 +66,13 @@ Ver la cantidad y precio total de productos en el carrito.
 Limpiar el carrito de compras.
 Comprar productos y actualizar la cantidad disponible.
 
+## Agregar un producto
+
+llenar formulario : En la casilla de la foto indicar por ej ruta de la foto :
+/img/jengibre.jpg
+/img/lechuga.jpg
+o link de acceso directo
+
 ## Autor
 
 C.Marcelo Felsen
