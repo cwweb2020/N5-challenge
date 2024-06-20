@@ -8,11 +8,7 @@ const ProductList = () => {
 
   return (
     <>
-      <h2
-        style={{ textAlign: "center", marginBottom: "38px", fontSize: "2em" }}
-      >
-        Lista de Productos
-      </h2>
+      <h2 className="product__title">Lista de Productos</h2>
       <div className="product__container">
         {productsList.map((product) => (
           <SingleProduct key={product.id} product={product} />

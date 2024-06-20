@@ -31,3 +31,15 @@
     }
   }
 }
+
+// responsive
+@media only screen and (max-width: 900px) {
+  .banner {
+    height: 24vh;
+    margin: 0 0 42px 0;
+
+    .overlay {
+      font-size: 9px;
+    }
+  }
+}

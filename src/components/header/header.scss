@@ -9,7 +9,7 @@
     align-items: center;
     padding: 0 38px;
     .header__cart {
-      font-size: 20px;
+      font-size: 1.25em;
       display: flex;
       align-items: center;
       gap: 25px;
@@ -21,6 +21,22 @@
           transition: all 500ms;
         }
       }
+    }
+    a {
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+// responsive
+
+@media only screen and (max-width: 900px) {
+  .header {
+    font-size: 12px;
+    .header__wrapper {
+      height: 7vh;
     }
   }
 }
