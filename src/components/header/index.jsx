@@ -18,6 +18,9 @@ const Header = () => {
         </Link>
 
         <div className="header__cart">
+          <Link to="/add-product" className="header__link">
+            Agregar Producto
+          </Link>
           <Link to="/cart">
             <LuShoppingCart />{" "}
             {totalItems > 0 && (
