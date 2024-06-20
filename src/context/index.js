@@ -6,7 +6,8 @@ const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const productsListArray = productsData.products;
-  // get from localStorage
+
+  // get from localStorage data
   const localStorageProducts = JSON.parse(localStorage.getItem("products"));
   const [productsList, setProductsList] = useState(
     localStorageProducts || productsListArray
