@@ -1,22 +1,18 @@
 import React from "react";
+import "./banner.scss";
 
 const Banner = ({ imgBanner = "/img/banner.jpg" }) => {
   return (
     <>
-      <section style={container} className="banner">
+      <section className="banner">
         <img style={{ width: "100%" }} src={imgBanner} alt="banner" />
+
+        <div className="overlay">
+          <h3>z market</h3>
+        </div>
       </section>
     </>
   );
 };
 
 export default Banner;
-
-const container = {
-  width: "100%",
-  height: "45vh",
-  overflow: "hidden",
-  objectFit: "cover",
-  padding: "20px",
-  margin: "0 0 100px 0",
-};

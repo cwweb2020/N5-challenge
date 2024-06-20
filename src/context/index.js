@@ -1,15 +1,17 @@
 // src/context/DataContext.js
 import React, { createContext, useEffect, useState } from "react";
-import products from "../products/products.json";
+import productsData from "../products/products.json";
 
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
-  // Obtener productos de localStorage
+  const productsListArray = productsData.products;
+  // get from localStorage
   const localStorageProducts = JSON.parse(localStorage.getItem("products"));
   const [productsList, setProductsList] = useState(
-    localStorageProducts || products
+    localStorageProducts || productsListArray
   );
+
   const localStorageCart = JSON.parse(localStorage.getItem("cart"));
   const [cart, setCart] = useState(localStorageCart || []);
 
@@ -27,9 +29,7 @@ const DataProvider = ({ children }) => {
           item.id === id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
-        const product = productsList.products.find(
-          (product) => product.id === id
-        );
+        const product = productsList.find((product) => product.id === id);
         return [...prevCart, { ...product, quantity: 1 }];
       }
     });
@@ -46,6 +46,18 @@ const DataProvider = ({ children }) => {
 
   //
   // purchase function
+  const purchaseCart = () => {
+    setProductsList((prevProducts) =>
+      prevProducts.map((product) => {
+        const itemInCart = cart.find((item) => item.id === product.id);
+        if (itemInCart) {
+          return { ...product, amount: product.amount - itemInCart.quantity };
+        }
+        return product;
+      })
+    );
+    clearCart();
+  };
 
   return (
     <DataContext.Provider
@@ -55,6 +67,7 @@ const DataProvider = ({ children }) => {
         addToCart,
         setProductsList,
         clearCart,
+        purchaseCart,
       }}
     >
       {children}

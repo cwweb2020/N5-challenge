@@ -32,14 +32,3 @@ a {
 
 @media only screen and (max-width: 900px) {
 }
-
-// variables
-@import "./variables.scss";
-
-.active {
-  background: white;
-  color: black !important;
-  padding: 7px 10px;
-  border-radius: 18px;
-  font-weight: 600 !important;
-}

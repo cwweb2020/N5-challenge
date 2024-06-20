@@ -12,8 +12,6 @@ const AppRoutes = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="cart" element={<Cart />} />
-            {/* <Route path="description/:id" element={<Description />} />
-            <Route path="favourites" element={<Favourites />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>

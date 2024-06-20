@@ -23,7 +23,7 @@ const SingleProduct = ({ product }) => {
           <p className="card__amount">Cantidad: {amount}</p>
         </div>
         <div className="card__button-container">
-          <button onClick={() => handleAddToCart(id)}>
+          <button onClick={() => handleAddToCart(id)} disabled={amount === 0}>
             Agregar al carrito
           </button>
         </div>

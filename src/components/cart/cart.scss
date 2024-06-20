@@ -49,4 +49,16 @@
       cursor: pointer;
     }
   }
+
+  .purchase-button {
+    border: none;
+    background: #0866ff;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+  }
 }

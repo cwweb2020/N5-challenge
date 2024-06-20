@@ -3,7 +3,7 @@ import { DataContext } from "../../context";
 import "./cart.scss";
 
 const Cart = () => {
-  const { cart, clearCart } = useContext(DataContext);
+  const { cart, clearCart, purchaseCart } = useContext(DataContext);
 
   //
   // calculate total price
@@ -37,7 +37,9 @@ const Cart = () => {
         <div className="cart__actions">
           <button onClick={clearCart}>Limpiar</button>
         </div>
-        {/* <button onClick={purchaseCart}>Comprar</button> */}
+        <button className="purchase-button" onClick={purchaseCart}>
+          Comprar
+        </button>
       </section>
 
       <br />
