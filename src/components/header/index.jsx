@@ -21,7 +21,7 @@ const Header = () => {
           <Link to="/add-product" className="header__link">
             Agregar Producto
           </Link>
-          <Link to="/cart">
+          <Link data-testid="cart-icon" to="/cart">
             <LuShoppingCart />{" "}
             {totalItems > 0 && (
               <span className="header__cart-count">{totalItems}</span>

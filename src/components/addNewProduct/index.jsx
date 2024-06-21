@@ -42,6 +42,7 @@ const AddProduct = () => {
         <div>
           <label>Nombre</label>
           <input
+            data-testid="name-input"
             type="text"
             name="name"
             value={newProduct.name}
@@ -52,6 +53,7 @@ const AddProduct = () => {
         <div>
           <label>Precio</label>
           <input
+            data-testid="price-input"
             type="number"
             name="price"
             value={newProduct.price}
@@ -62,6 +64,7 @@ const AddProduct = () => {
         <div>
           <label>Cantidad</label>
           <input
+            data-testid="amount-input"
             type="number"
             name="amount"
             value={newProduct.amount}
@@ -72,6 +75,7 @@ const AddProduct = () => {
         <div>
           <label>Imagen URL</label>
           <input
+            data-testid="img-input"
             type="text"
             name="img"
             value={newProduct.img}
@@ -79,7 +83,9 @@ const AddProduct = () => {
             required
           />
         </div>
-        <button type="submit">Agregar Producto</button>
+        <button data-testid="submit-btn" type="submit">
+          Agregar Producto
+        </button>
       </form>
     </section>
   );

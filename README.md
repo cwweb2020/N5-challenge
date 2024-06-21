@@ -71,7 +71,7 @@ Comprar productos y actualizar la cantidad disponible.
 llenar formulario : En la casilla de la foto indicar por ej ruta de la foto :
 /img/jengibre.jpg
 /img/lechuga.jpg
-o link de acceso directo
+o URL de acceso directo
 
 ## Autor
 
