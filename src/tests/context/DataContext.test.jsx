@@ -1,69 +1,123 @@
-// src/tests/context/DataContext.test.jsx
 import React from "react";
-import { render } from "@testing-library/react";
-import { DataContext, DataProvider } from "../../context";
+import { render, act } from "@testing-library/react";
+import { DataProvider, DataContext } from "../../context";
 import productsData from "../../products/products.json";
 
-// Mock localStorage
-const localStorageMock = (() => {
-  let store = {};
-
-  return {
-    getItem(key) {
-      return store[key] || null;
-    },
-    setItem(key, value) {
-      store[key] = value.toString();
-    },
-    clear() {
-      store = {};
-    },
-    removeItem(key) {
-      delete store[key];
-    },
-  };
-})();
-
-Object.defineProperty(global, "localStorage", {
-  value: localStorageMock,
-});
-
 describe("DataContext", () => {
+  let localStorageMock;
+
   beforeEach(() => {
-    localStorage.clear();
+    // Mock localStorage
+    localStorageMock = (function () {
+      let store = {};
+      return {
+        getItem: function (key) {
+          return store[key] || null;
+        },
+        setItem: function (key, value) {
+          store[key] = value.toString();
+        },
+        clear: function () {
+          store = {};
+        },
+        removeItem: function (key) {
+          delete store[key];
+        },
+      };
+    })();
+    Object.defineProperty(window, "localStorage", { value: localStorageMock });
   });
 
-  test("purchases cart and updates products list", async () => {
-    let result;
+  afterEach(() => {
+    localStorageMock.clear();
+  });
 
-    // Renderizamos el componente con el contexto
-    result = render(
-      <DataContext.Provider value={DataProvider}>
-        <DataProvider />
-      </DataContext.Provider>
+  it("should provide initial products and cart from localStorage", () => {
+    localStorage.setItem("products", JSON.stringify(productsData.products));
+    localStorage.setItem("cart", JSON.stringify([{ id: 1, quantity: 2 }]));
+
+    let productsList, cart;
+
+    render(
+      <DataProvider>
+        <DataContext.Consumer>
+          {(value) => {
+            productsList = value.productsList;
+            cart = value.cart;
+            return null;
+          }}
+        </DataContext.Consumer>
+      </DataProvider>
     );
 
-    // Esperamos a que se complete la actualización después de addToCart y purchaseCart
-    await Promise.resolve();
+    expect(productsList).toEqual(productsData.products);
+    expect(cart).toEqual([{ id: 1, quantity: 2 }]);
+  });
 
-    // Accedemos a los valores proporcionados por DataProvider
-    const { addToCart, purchaseCart, productsList } = result.contextType;
+  it("should add items to the cart", () => {
+    let contextValue;
 
-    // Realizamos las operaciones directamente
-    addToCart(1, 2);
-    purchaseCart();
+    const TestComponent = () => {
+      contextValue = React.useContext(DataContext);
+      return null;
+    };
 
-    // Aseguramos que las actualizaciones se reflejen correctamente
-    const updatedProduct = productsData.products.find(
-      (product) => product.id === 1
+    render(
+      <DataProvider>
+        <TestComponent />
+      </DataProvider>
     );
-    updatedProduct.amount -= 2;
 
-    expect(productsList).toEqual([
-      updatedProduct,
-      ...productsData.products.filter((product) => product.id !== 1),
+    act(() => {
+      contextValue.addToCart(1, 2);
+    });
+
+    expect(contextValue.cart).toEqual([
+      { ...productsData.products[0], quantity: 2 },
     ]);
-    expect(result.contextType.cart).toHaveLength(0);
-    expect(JSON.parse(localStorage.getItem("cart"))).toEqual([]);
+  });
+
+  it("should clear the cart", () => {
+    let contextValue;
+
+    const TestComponent = () => {
+      contextValue = React.useContext(DataContext);
+      return null;
+    };
+
+    render(
+      <DataProvider>
+        <TestComponent />
+      </DataProvider>
+    );
+
+    act(() => {
+      contextValue.addToCart(1, 2);
+      contextValue.clearCart();
+    });
+
+    expect(contextValue.cart).toEqual([]);
+  });
+
+  it("should purchase the cart", () => {
+    let contextValue;
+
+    const TestComponent = () => {
+      contextValue = React.useContext(DataContext);
+      return null;
+    };
+
+    render(
+      <DataProvider>
+        <TestComponent />
+      </DataProvider>
+    );
+
+    act(() => {
+      contextValue.addToCart(1, 2);
+      contextValue.purchaseCart();
+    });
+
+    expect(contextValue.cart).toEqual([]);
   });
 });

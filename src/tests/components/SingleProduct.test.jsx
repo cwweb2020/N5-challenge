@@ -50,12 +50,12 @@ describe("SingleProduct Component", () => {
     const contextValue = { addToCart };
     renderWithContext(contextValue, product);
 
-    window.alert = jest.fn(); // Mock alert to avoid actual alert popup
+    window.alert = jest.fn();
 
     const addButton = screen.getByText("Agregar al carrito");
     fireEvent.click(addButton);
 
-    expect(addToCart).toHaveBeenCalledWith(1, 1); // Default quantity is 1
+    expect(addToCart).toHaveBeenCalledWith(1, 1);
     expect(window.alert).toHaveBeenCalledWith("Producto agregado al carrito");
   });
 

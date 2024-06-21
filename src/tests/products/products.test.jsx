@@ -18,7 +18,6 @@ describe("Products JSON Data", () => {
   });
 
   test("product IDs are unique", () => {
-    // Verificar que todos los IDs de productos son únicos
     const ids = productsData.products.map((product) => product.id);
     const uniqueIds = new Set(ids);
     expect(ids.length).toBe(uniqueIds.size);

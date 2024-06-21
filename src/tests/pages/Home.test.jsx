@@ -13,14 +13,11 @@ jest.mock("../../components/productList", () => () => (
 
 describe("Home Component", () => {
   test("renders Banner and ProductList components", () => {
-    // Renderizamos el componente Home
     render(<Home />);
 
-    // Verificamos que Banner esté presente
     const bannerElement = screen.getByTestId("banner");
     expect(bannerElement).toBeInTheDocument();
 
-    // Verificamos que ProductList esté presente
     const productListElement = screen.getByTestId("product-list");
     expect(productListElement).toBeInTheDocument();
   });
